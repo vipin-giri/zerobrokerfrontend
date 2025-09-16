@@ -1,19 +1,9 @@
 import React, { useState, useRef } from 'react';
-import { 
-  FaChevronLeft, 
-  FaChevronRight, 
-  FaBed, 
-  FaBath, 
-  FaExpand, 
-  FaShare, 
-  FaHeart, 
-  FaBolt,
-  FaExternalLinkAlt
-} from 'react-icons/fa';
+import { ChevronLeft, ChevronRight, Home, Bath, Maximize, Share, Heart, Star } from 'lucide-react';
 
 const PropertyCard = ({ property }) => {
   return (
-    <div className="flex-shrink-0 w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 px-2 mb-6">
+    <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-2 mb-4">
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
         {/* Card Image */}
         <div className="relative h-48 overflow-hidden">
@@ -23,8 +13,8 @@ const PropertyCard = ({ property }) => {
             className="w-full h-full object-cover"
           />
           {/* Featured Badge */}
-          <div className="absolute top-3 left-3 bg-[#EAE9FF] text-blue-600 px-3 py-1 rounded-[6px] text-xs font-semibold uppercase flex items-center gap-1">
-            <FaBolt size={12} />
+          <div className="absolute top-3 left-3 bg-purple-100 text-purple-800 px-3 py-1 rounded-md text-xs font-semibold uppercase flex items-center gap-1">
+            <Star className="w-3 h-3 fill-current" />
             FEATURED
           </div>
           {/* Price Tag */}
@@ -33,23 +23,23 @@ const PropertyCard = ({ property }) => {
           </div>
         </div>
 
-        {/* Card Body */}
-        <div className="p-5">
+        {/* Card Body - increased padding by 2px (from p-5 to px-5 py-7) */}
+        <div className="px-7 py-7">
           <h3 className="text-lg font-bold text-gray-900 mb-1">{property.title}</h3>
           <p className="text-sm text-gray-500 mb-4">{property.location}</p>
 
           {/* Property Features */}
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaBed size={14} />
+              <Home className="w-4 h-4" />
               <span>{property.beds} bed</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaBath size={14} />
+              <Bath className="w-4 h-4" />
               <span>{property.baths} bath</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaExpand size={14} />
+              <Maximize className="w-4 h-4" />
               <span>{property.sqft} sqft</span>
             </div>
           </div>
@@ -62,13 +52,13 @@ const PropertyCard = ({ property }) => {
             <span className="text-sm text-gray-700 font-medium">For Sell</span>
             <div className="flex items-center gap-3">
               <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <FaExternalLinkAlt size={16} className="text-gray-600" />
+                <Maximize className="w-4 h-4" />
               </button>
               <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <FaShare size={16} className="text-gray-600" />
+                <Share className="w-4 h-4" />
               </button>
               <button className="flex items-center justify-center hover:bg-gray-50 transition-colors p-1 rounded">
-                <FaHeart size={16} className="text-gray-600" />
+                <Heart className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -82,7 +72,6 @@ const PropertyCarousel = ({ properties, sectionId }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const carouselRef = useRef(null);
 
-  // Removed auto-scroll functionality as per user request
   const goToPrevious = () => {
     setCurrentIndex((prevIndex) => prevIndex > 0 ? prevIndex - 1 : 0);
   };
@@ -126,7 +115,7 @@ const PropertyCarousel = ({ properties, sectionId }) => {
         className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
         disabled={currentIndex === 0}
       >
-        <FaChevronLeft size={20} className="text-gray-600" />
+        <ChevronLeft size={20} className="text-gray-600" />
       </button>
 
       <button
@@ -134,7 +123,7 @@ const PropertyCarousel = ({ properties, sectionId }) => {
         className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
         disabled={currentIndex >= Math.max(0, properties.length - 4)}
       >
-        <FaChevronRight size={20} className="text-gray-600" />
+        <ChevronRight size={20} className="text-gray-600" />
       </button>
     </div>
   );
@@ -253,8 +242,8 @@ const PropertyExplorer = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Header Section */}
-      <div className="bg-white py-16">
+      {/* Header Section - removed py-16, now no top/bottom spacing */}
+      <div className="bg-white">
         <div className="max-w-7xl mx-auto px-4 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-4">Explore Property Types</h1>
           <p className="text-lg text-gray-600 mb-12">Choose from various property categories to find your ideal home</p>
@@ -278,8 +267,8 @@ const PropertyExplorer = () => {
         </div>
       </div>
 
-      {/* Property Sections */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
+      {/* Property Sections - removed py-12, now no top/bottom spacing */}
+      <div className="max-w-7xl mx-auto px-4">
         {Object.entries(propertyTypes).map(([key, section]) => (
           <div key={key} id={key} className="mb-20">
             {/* Section Header */}
