@@ -1,19 +1,19 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { 
   FaChevronLeft, 
-  FaChevronRight, 
-  FaBed, 
-  FaBath, 
-  FaExpand, 
-  FaShare, 
-  FaChartBar, 
-  FaHeart, 
-  FaBolt 
+  FaChevronRight,  
 } from 'react-icons/fa';
+import { ReactComponent as BedIcon } from '../svg/bed.svg';
+import { ReactComponent as FeaturedIcon } from '../svg/featured.svg';
+import { ReactComponent as BathIcon } from '../svg/bath.svg';
+import { ReactComponent as ExpandIcon } from '../svg/expand.svg';
+import { ReactComponent as FullscreenIcon } from '../svg/fullscreen.svg';
+import { ReactComponent as ShareIcon } from '../svg/share.svg';
+import { ReactComponent as HeartIcon } from '../svg/heart.svg';
 
 const PropertyCard = ({ property }) => {
   return (
-    <div className="flex-shrink-0 w-full sm:w-2/3 lg:w-1/2 xl:w-1/3 px-2 pb-6">
+    <div className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 px-2 pb-4">
       <div className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden">
         {/* Card Image */}
         <div className="relative h-48 overflow-hidden">
@@ -23,8 +23,8 @@ const PropertyCard = ({ property }) => {
             className="w-full h-full object-cover"
           />
           {/* Featured Badge */}
-          <div className="absolute top-3 left-3 bg-blue-100 text-blue-600 px-3 py-1 rounded-[6px] text-xs font-semibold uppercase flex items-center gap-1">
-            <FaBolt size={12} />
+          <div className="absolute top-3 left-3 bg-[#EAE9FF] text-[#18126C] px-3 py-1 rounded-[6px] text-xs font-semibold uppercase flex items-center gap-1">
+            <FeaturedIcon className="w-3 h-4" />
             FEATURED
           </div>
           {/* Price Tag */}
@@ -41,15 +41,15 @@ const PropertyCard = ({ property }) => {
           {/* Property Features */}
           <div className="flex items-center gap-4 mb-4">
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaBed size={14} />
+              <BedIcon className="w-4 h-4" />
               <span>{property.beds} Bed</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaBath size={14} />
+              <BathIcon className="w-4 h-4" />
               <span>{property.baths} Bath</span>
             </div>
             <div className="flex items-center gap-1 text-xs text-gray-600">
-              <FaExpand size={14} />
+              <ExpandIcon className="w-4 h-4" />
               <span>{property.sqft} sqft</span>
             </div>
           </div>
@@ -61,13 +61,13 @@ const PropertyCard = ({ property }) => {
             </div>
             <div className="flex items-center gap-2">
               <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <FaShare size={14} className="text-gray-600" />
+                <FullscreenIcon className="w-4 h-4" />
               </button>
               <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <FaChartBar size={14} className="text-gray-600" />
+                <ShareIcon className="w-4 h-4" />
               </button>
               <button className="w-8 h-8 border border-gray-200 rounded flex items-center justify-center hover:bg-gray-50 transition-colors">
-                <FaHeart size={14} className="text-gray-600" />
+                <HeartIcon className="w-4 h-4" />
               </button>
             </div>
           </div>
@@ -218,7 +218,7 @@ const RealEstateCarousel = () => {
         {/* Navigation Buttons */}
         <button
           onClick={goToPrevious}
-          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
+          className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
           disabled={currentIndex === 0}
         >
           <FaChevronLeft size={20} className="text-gray-600" />
@@ -226,7 +226,7 @@ const RealEstateCarousel = () => {
 
         <button
           onClick={goToNext}
-          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-lg flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
+          className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-6 w-12 h-12 bg-white border border-gray-200 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 z-10"
           disabled={currentIndex >= Math.max(0, properties.length - 4)}
         >
           <FaChevronRight size={20} className="text-gray-600" />
